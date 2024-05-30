@@ -66,7 +66,10 @@ export const FileUploadCard = ({
 
       {action === "delete" && (
         <button
-          onClick={handleDelete}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleDelete();
+          }}
           className="text-gray-500 hover:text-red-500"
         >
           <Trash className="w-5 h-5" />
