@@ -1,6 +1,7 @@
 import { ChangeEvent, useRef } from "react";
 import { Button } from "./ui/button";
 import { useFileUpload } from "@/hooks/use-file-upload";
+import { Upload } from "lucide-react";
 
 type Props = {
   handleFileChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -17,8 +18,13 @@ export const FileUploadButton = ({ handleFileChange }: Props) => {
 
   return (
     <>
-      <Button onClick={handleUploadClick} variant="outline" className="w-full">
-        Upload files
+      <Button
+        onClick={handleUploadClick}
+        variant="outline"
+        className="w-full gap-7"
+      >
+        <p>Upload files</p>
+        <Upload className="w-5 h-5 text-gray-600" />
       </Button>
       <input
         type="file"
