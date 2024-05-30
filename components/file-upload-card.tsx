@@ -44,21 +44,23 @@ export const FileUploadCard = ({
   return (
     <div
       onClick={handleClick}
-      className="h-9 w-full px-3 inline-flex items-center justify-between whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground cursor-pointer"
+      className="h-9 w-full px-3 gap-4 inline-flex items-center justify-between whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground cursor-pointer overflow-hidden"
     >
-      <label
-        htmlFor={id}
-        ref={labelRef}
-        className={cn(
-          "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-          {
-            "pointer-events-none": action === "delete",
-            "cursor-pointer": action === "select",
-          }
-        )}
-      >
-        {name}
-      </label>
+      <div className="flex-1 min-w-0">
+        <label
+          htmlFor={id}
+          ref={labelRef}
+          className={cn(
+            "block text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 overflow-hidden text-ellipsis whitespace-nowrap",
+            {
+              "pointer-events-none": action === "delete",
+              "cursor-pointer": action === "select",
+            }
+          )}
+        >
+          {name}
+        </label>
+      </div>
 
       {action === "select" && (
         <Checkbox checked={isSelected} onCheckedChange={onChange} id={id} />
