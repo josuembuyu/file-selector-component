@@ -1,4 +1,4 @@
-import { Trash } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 import { Checkbox } from "./ui/checkbox";
 import { useRef } from "react";
 import { useOpenSelector } from "@/hooks/use-open-selector";
@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   name: string;
   id: string;
-  action: "select" | "delete";
+  action: "select" | "delete" | "loading";
   isSelected?: boolean;
   onChange?: (checked: boolean) => void;
   onDelete?: (fileId: string) => void;
@@ -76,6 +76,10 @@ export const FileUploadCard = ({
         >
           <Trash className="w-5 h-5" />
         </button>
+      )}
+
+      {action === "loading" && (
+        <Loader2 className="animate-spin text-muted-foreground h-5 w-5" />
       )}
     </div>
   );

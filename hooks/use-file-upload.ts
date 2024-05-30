@@ -4,6 +4,7 @@ interface FileWrapper {
   file: File;
   id: string;
   isSelected: boolean;
+  isLoading?: boolean;
 }
 
 export const useFileUpload = () => {
@@ -16,6 +17,7 @@ export const useFileUpload = () => {
         file,
         id: file.name,
         isSelected: false,
+        isLoading: true,
       }));
 
       const uniqueFileWrappers = fileWrappers.filter(
@@ -23,6 +25,16 @@ export const useFileUpload = () => {
       );
 
       setFiles((prevFiles) => [...prevFiles, ...uniqueFileWrappers]);
+
+      setTimeout(() => {
+        setFiles((prevFiles) =>
+          prevFiles.map((file) =>
+            uniqueFileWrappers.some((newFile) => newFile.id === file.id)
+              ? { ...file, isLoading: false }
+              : file
+          )
+        );
+      }, 2000);
     }
   };
 

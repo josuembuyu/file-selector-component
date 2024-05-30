@@ -15,6 +15,7 @@ interface FileWrapper {
   file: File;
   id: string;
   isSelected: boolean;
+  isLoading?: boolean;
 }
 
 type Props = {
@@ -32,7 +33,7 @@ export const FileSelectorSheet = ({
   selectFiles,
   handleCloseSheet,
 }: Props) => {
-  const { isOpen, onClose } = useOpenSelector();
+  const { isOpen } = useOpenSelector();
 
   const checkedFiles = files.filter((file) => file.isSelected);
 
@@ -56,7 +57,7 @@ export const FileSelectorSheet = ({
                   name={file.file.name}
                   id={file.id}
                   isSelected={file.isSelected}
-                  action="select"
+                  action={file.isLoading ? "loading" : "select"}
                   onChange={(checked) => {
                     handleFileSelect(checked, file.id);
                   }}
