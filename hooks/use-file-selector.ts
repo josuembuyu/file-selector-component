@@ -9,13 +9,21 @@ export const useFileSelector = () => {
   const { toast } = useToast();
 
   const selectFiles = (fileIds: string[]) => {
-    setSelectedFileIds(fileIds);
+    if (fileIds.length > 0) {
+      setSelectedFileIds(fileIds);
 
-    toast({
-      title: "Files selected succefully",
-    });
+      toast({
+        title: "Files selected succefully",
+      });
 
-    onClose();
+      onClose();
+    } else {
+      toast({
+        title: "No files selected",
+        description: "Please select at least one file",
+        variant: "destructive",
+      });
+    }
   };
 
   const addFile = (fileId: string) => {

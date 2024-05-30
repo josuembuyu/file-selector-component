@@ -70,6 +70,7 @@ export const FileSelectorSheet = ({
           <FileUploadButton handleFileChange={handleFileChange} />
           <Button
             onClick={() => selectFiles(checkedFiles.map((file) => file.id))}
+            disabled={checkedFiles.length === 0}
             className="w-full bg-violet-600 hover:bg-violet-500"
           >
             Add files ({checkedFiles.length} selected)

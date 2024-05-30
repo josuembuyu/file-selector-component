@@ -18,7 +18,11 @@ export const useFileUpload = () => {
         isSelected: false,
       }));
 
-      setFiles((prevFiles) => [...prevFiles, ...fileWrappers]);
+      const uniqueFileWrappers = fileWrappers.filter(
+        (newFile) => !files.some((file) => file.id === newFile.id)
+      );
+
+      setFiles((prevFiles) => [...prevFiles, ...uniqueFileWrappers]);
     }
   };
 
